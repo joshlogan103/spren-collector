@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Spren, Feeding
-from .serializers import SprenSerializer, FeedingSerializer
+from .models import Spren, Feeding, Power
+from .serializers import SprenSerializer, FeedingSerializer, PowerSerializer
 
 # Create your views here.
 
@@ -40,3 +40,13 @@ class FeedingDetail(generics.RetrieveUpdateDestroyAPIView):
   def get_queryset(self):
     spren_id = self.kwargs['spren_id']
     return Feeding.objects.filter(spren_id = spren_id)
+  
+class PowerList(generics.ListCreateAPIView):
+  queryset = Power.objects.all()
+  serializer_class = PowerSerializer
+
+class PowerDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Power.objects.all()
+  serializer_class = PowerSerializer
+  lookup_field = 'id'
+
