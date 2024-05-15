@@ -25,21 +25,6 @@ class Radiant(models.Model):
   def __str__(self):
     return self.name
 
-class Power(models.Model):
-  name = models.CharField(max_length=50)
-  effect = models.CharField(max_length=100)
-  color = models.CharField(max_length=30)
-
-  def __str__(self):
-    return self.name
-  
-class Radiant(models.Model):
-  name = models.CharField(max_length=100)
-  origin = models.CharField(max_length=100)
-
-  def __str__(self):
-    return self.name
-
 class Spren(models.Model):
   name = models.CharField(max_length=100)
   type = models.CharField(max_length=40)
@@ -54,18 +39,6 @@ class Spren(models.Model):
   
   def fed_for_today(self):
     return self.feeding_set.filter(date = date.today()).count() >= len(MEALS)
-  
-class Interaction(models.Model):
-  spren = models.ForeignKey(Spren, on_delete=models.CASCADE)
-  radiants = models.ForeignKey(Radiant, on_delete=models.CASCADE)
-  description = models.CharField(max_length=100)
-  date = models.DateField('Interaction date')
-
-  def __str__(self):
-    return self.description
-  
-  class META:
-    ordering=['-date']
   
 class Interaction(models.Model):
   spren = models.ForeignKey(Spren, on_delete=models.CASCADE)

@@ -47,19 +47,6 @@ class InteractionSerializer(serializers.ModelSerializer):
     lookup_field='id'
   )
 
-class InteractionSerializer(serializers.ModelSerializer):
-  spren = serializers.HyperlinkedRelatedField(
-    view_name='spren-detail',
-    read_only=True,
-    lookup_field='id'
-  )
-
-  radiants = serializers.HyperlinkedRelatedField(
-    view_name='radiant-detail',
-    read_only=True,
-    lookup_field='id'
-  )
-
   class Meta:
     model = Interaction
     model = Interaction
@@ -67,7 +54,6 @@ class InteractionSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
   password = serializers.CharField(write_only=True)  # Add a password field, make it write-only
-  spren = SprenSerializer(many = True, read_only = True)
 
   class Meta:
       model = User
