@@ -47,7 +47,21 @@ class InteractionSerializer(serializers.ModelSerializer):
     lookup_field='id'
   )
 
+class InteractionSerializer(serializers.ModelSerializer):
+  spren = serializers.HyperlinkedRelatedField(
+    view_name='spren-detail',
+    read_only=True,
+    lookup_field='id'
+  )
+
+  radiants = serializers.HyperlinkedRelatedField(
+    view_name='radiant-detail',
+    read_only=True,
+    lookup_field='id'
+  )
+
   class Meta:
+    model = Interaction
     model = Interaction
     fields = '__all__'
 
