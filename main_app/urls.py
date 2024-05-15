@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home, SprenList, SprenDetail, FeedingListCreate, FeedingDetail, PowerList, PowerDetail, AddPowerToSpren, RemovePowerFromSpren, RadiantList, RadiantDetail, InteractionList, InteractionDetail
+from .views import Home, SprenList, SprenDetail, FeedingListCreate, FeedingDetail, PowerList, PowerDetail, AddPowerToSpren, RemovePowerFromSpren, RadiantList, RadiantDetail, InteractionList, InteractionDetail, CreateUserView, LoginView, VerifyUserView
 
 urlpatterns = [
   # Home
@@ -25,5 +25,10 @@ urlpatterns = [
 
   # Interactions
   path('spren/<int:spren_id>/radiants/<int:radiant_id>/interactions/', InteractionList.as_view(), name = 'interactions-list'),
-  path('spren/<int:spren_id>/radiants/<int:radiant_id>/interactions/<int:interaction_id>/', InteractionDetail.as_view(), name = 'interaction-detail')
+  path('spren/<int:spren_id>/radiants/<int:radiant_id>/interactions/<int:interaction_id>/', InteractionDetail.as_view(), name = 'interaction-detail'),
+
+  # Users
+  path('users/register/', CreateUserView.as_view(), name='register'),
+  path('users/login/', LoginView.as_view(), name='login'),
+  path('users/token/refresh/', VerifyUserView.as_view(), name='token_refresh')
 ]

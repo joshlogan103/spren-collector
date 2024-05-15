@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,6 +32,7 @@ class Spren(models.Model):
   age = models.IntegerField()
   powers = models.ManyToManyField(Power)
   radiants = models.ManyToManyField(Radiant, through = 'Interaction')
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
